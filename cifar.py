@@ -83,7 +83,6 @@ state = {k: v for k, v in args._get_kwargs()}
 assert args.dataset == 'cifar10' or args.dataset == 'cifar100', 'Dataset can only be cifar10 or cifar100.'
 
 # Use CUDA
-os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu_id
 use_cuda = torch.cuda.is_available()
 
 # Random seed
@@ -220,8 +219,6 @@ def main():
             }, is_best, checkpoint=args.save_dir)
 
     logger.close()
-    # logger.plot()
-    savefig(os.path.join(args.save_dir, 'log.eps'))
 
     print('Best acc:')
     print(best_acc)
